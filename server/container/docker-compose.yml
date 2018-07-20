@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+
+    db:
+      image: arangodb:3.3.7
+      ports:
+        - 5002:8529
+      environment:
+        - ARANGO_NO_AUTH=1
+    
+    web:
+      build: ./web
+      volumes:
+        - ./web:/app
+      ports:
+        - 5001:80
+      depends_on:
+        - db
+    
+    manager:
+      build: ./manager
+      volumes: 
+        - ./manager:/app
+      ports:
+        - 5003:80
+      depends_on:
+        - db
+        - web

@@ -1,0 +1,57 @@
+<HTML>
+	<HEAD>
+		<title>Monitoring Software Project</title>
+		<meta name="author" content="Gueny Enzo - Duret Jarod"/>
+        <link href="https://www.w3schools.com/w3css/4/w3.css" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+        <link href="../static/style.css" type="text/css" rel="stylesheet"/>
+	</HEAD>
+
+	<BODY>
+        <div id="banner" class="w3-row w3-dark-grey w3-padding-16 w3-card-4" style="position:fixed; margin-top:0; width:100%; z-index:10;">
+
+        	<center><h1>Monitoring Software Project - DURET Jarod, GUENY Enzo - L2S4 Informatique</h1></center>
+
+		</div>
+
+		<div id="menu" style="position: fixed; margin-top:105px; width:100%">
+				<ul class="w3-card-4">
+					<li class="w3-quarter"><a href="{{ url_for("index") }}"> Accueil </a></li>
+					<li class="w3-quarter"><a href="{{ url_for("cpuMem") }}"> CPU / RAM </a></li>
+					<li class="w3-quarter"><a href="{{ url_for("disks") }}"> Disks </a></li>
+					<li class="w3-quarter"><a href="{{ url_for("others") }}"> Others </a></li>
+					
+				</ul>
+		</div>
+		
+		<div style="padding-top: 160px;">
+			<TABLE id="maintable" text-align="center">
+				<tr>
+					<center><h1>Alertes CERT</h1></center>
+				</tr>
+				<tr>
+					{% for i in alerts %}
+						<th>{{ i['name'] }}</th>
+						<td>{{ i['date'] }}</td>
+						<td>{{ i['obj'] }}</td>
+						<td>{{ i['status'] }}</td>
+						<tr></tr>
+					{% endfor %}
+				</tr>
+			</TABLE>
+			<TABLE id="maintable" text-align="center">
+				<tr>
+						<center><h1>Notifications CERT</h1></center>
+				</tr>
+				<tr>
+						{% for i in notifications %}
+							<th>{{ i['name'] }}</th>
+							<td>{{ i['date'] }}</td>
+							<td>{{ i['obj'] }}</td>
+							<tr></tr>
+						{% endfor %}
+				</tr>
+			</TABLE>
+		</div>
+	</BODY>
+</HTML>
